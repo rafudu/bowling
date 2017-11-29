@@ -37,5 +37,14 @@ class Frame {
   points() {
     return sum(this.computedPoints);
   }
+  toJSON() {
+    return {
+      isLastFrame: this.isLastFrame,
+      points: this.points(),
+      spare: this.isSpare(),
+      strike: this.isStrike(),
+      rawPoints: this.computedPoints,
+    }
+  }
 }
 export default Frame;

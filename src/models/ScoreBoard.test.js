@@ -145,3 +145,31 @@ it("scores 176 points for the example game", () => {
 
   expect(board.score()).toBe(176);
 })
+
+it("exports and array with empty frames for the game if no frame was played", () => {
+  const board = new ScoreBoard();
+  expect(board.toArray().length).toBe(board.totalFrames);
+  board.toArray().forEach((frame) => {
+    expect(frame).toHaveProperty('isLastFrame');
+    expect(frame).toHaveProperty('strike');
+    expect(frame).toHaveProperty('spare');
+    expect(frame).toHaveProperty('key');
+    expect(frame).toHaveProperty('points');
+    expect(frame).toHaveProperty('rawPoints');
+  })
+
+})
+it("exports and array with the value of the played frames", () => {
+  const board = new ScoreBoard();
+  board.computeRoll(10);
+  const frame = board.toArray()[0];
+  expect(board.toArray().length).toBe(board.totalFrames);
+  expect(frame).toHaveProperty('strike', true);
+  expect(frame).toHaveProperty('isLastFrame', false);
+  expect(frame).toHaveProperty('spare', false);
+  expect(frame).toHaveProperty('key');
+  expect(frame).toHaveProperty('points', 10);
+  expect(frame).toHaveProperty('rawPoints', [10]);
+
+
+})

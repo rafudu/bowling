@@ -7,7 +7,7 @@ class ScoreBoard {
     this.frames = [];
     this.currentFrameIndex = 0;
     this.currentFrame = new Frame();
-
+    this.totalFrames = 10;
   }
 
   isLastFrame() {
@@ -29,12 +29,24 @@ class ScoreBoard {
     const points = this.frames.map(frame => frame.points());
     return sum(points);
   }
+
   nextFrame(){
     this.frames.push(this.currentFrame);
     this.currentFrame = new Frame({
       isLastFrame: this.isLastFrame(),
     });
     this.currentFrameIndex++;
+  }
+
+  toArray() {
+    const frames = [];
+    for (var i = 0; i < this.totalFrames; i++) {
+      const frame = this.frames[i] ? this.frames[i].toJSON() : (new Frame()).toJSON();
+      frame.key = i;
+      frames.push(frame);
+    }
+    return frames;
+
   }
 
 }

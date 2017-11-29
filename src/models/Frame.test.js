@@ -120,3 +120,17 @@ it("finishes after three rolls if it has additional rolls", () => {
   expect(frame.rolls.length).toBe(3);
   expect(frame.rollingIsFinished()).toBe(true);
 })
+
+it("exports the frame information to JSON", () => {
+  const frame = new Frame({ isLastFrame: true });
+
+  frame.addRolling(1);
+  frame.addRolling(9);
+  expect(frame.toJSON()).toMatchObject({
+    strike: frame.isStrike(),
+    spare: frame.isSpare(),
+    points: frame.points(),
+    rawPoints: frame.computedPoints,
+    isLastFrame: frame.isLastFrame,
+  });
+})
