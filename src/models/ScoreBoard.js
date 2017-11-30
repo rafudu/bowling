@@ -11,7 +11,7 @@ class ScoreBoard {
   }
 
   isLastFrame() {
-    return this.currentFrameIndex === 9;
+    return this.currentFrameIndex === this.totalFrames-1;
   }
 
   computeRoll(pinsDropped) {
@@ -40,8 +40,9 @@ class ScoreBoard {
 
   toArray() {
     const frames = [];
+    const lastFrame = this.totalFrames - 1;
     for (var i = 0; i < this.totalFrames; i++) {
-      const frame = this.frames[i] ? this.frames[i].toJSON() : (new Frame()).toJSON();
+      const frame = this.frames[i] ? this.frames[i].toJSON() : (new Frame({ isLastFrame: i === lastFrame})).toJSON();
       frame.key = i;
       frames.push(frame);
     }

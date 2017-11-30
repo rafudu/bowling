@@ -157,7 +157,11 @@ it("exports and array with empty frames for the game if no frame was played", ()
     expect(frame).toHaveProperty('points');
     expect(frame).toHaveProperty('rawPoints');
   })
-
+})
+it("the last frame of the empty frames array must be markes as the last frame", () => {
+  const board = new ScoreBoard();
+  const lastFrame = board.toArray().slice(-1)[0];
+  expect(lastFrame).toHaveProperty('isLastFrame', true);
 })
 it("exports and array with the value of the played frames", () => {
   const board = new ScoreBoard();
