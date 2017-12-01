@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { roll } from '../actions';
+import { roll, reset } from '../actions';
 import ScoreBoard from '../components/ScoreBoard';
 import RandomRoller from '../components/RandomRoller';
 class Game extends Component {
@@ -9,7 +9,7 @@ class Game extends Component {
       <div id="bowling-score">
         <ScoreBoard rolls={this.props.rolls} />
         <hr />
-        <RandomRoller roll={this.props.roll} />
+        <RandomRoller roll={this.props.roll} reset={this.props.reset} />
       </div>
     )
   }
@@ -20,5 +20,6 @@ const mapStateToProps = ({rolls}) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   roll: (pins) => dispatch(roll(pins)),
+  reset: () => dispatch(reset()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Game);

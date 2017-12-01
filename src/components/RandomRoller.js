@@ -31,6 +31,7 @@ class RandomRoller extends React.Component {
         <button onClick={this.roll}>Roll it!</button>
         <button onClick={() => this.rollStrike()}>Strike it!</button>
         <button onClick={() => this.rollSpare()}>Spare it!</button>
+        <button onClick={() => this.props.reset()}>Reset game</button>
       </div>
     )
   }
