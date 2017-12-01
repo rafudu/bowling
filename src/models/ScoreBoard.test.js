@@ -37,19 +37,19 @@ it("adds next roll to the last frame if it was a spare", () => {
   board.computeRoll(3);
   // board.computeRoll(0);
 
-  expect(board.frames.length).toBe(1);
+  expect(board.frames.length).toBe(2);
   expect(board.frames[0].isSpare()).toBe(true);
   expect(board.frames[0].points()).toBe(13);
   // expect(board.score()).toBe(16);
 })
 
-it("keeps track of the score of finished frames", () => {
+it("keeps track of the score of unfinished frames", () => {
   const board = new ScoreBoard();
   board.computeRoll(1);
   board.computeRoll(1);
 
   board.computeRoll(1);
-  expect(board.score()).toBe(2);
+  expect(board.score()).toBe(3);
 })
 
 it("treats the 10th frame as the last frame", () => {
@@ -68,7 +68,7 @@ it("treats the 10th frame as the last frame", () => {
 
 
   expect(board.frames.length).toBe(10);
-  expect(board.currentFrame.isLastFrame).toBe(true);
+  expect(board.frame().isLastFrame).toBe(true);
 
 
 })
@@ -93,6 +93,23 @@ it("scores 300 for a perfect game", () => {
 
 })
 
+it("can be initiated with rolls", () => {
+  const board = new ScoreBoard([
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10
+  ]);
+    expect(board.score()).toBe(300);
+})
 it("scores 279 for a near perfect game", () => {
   const board = new ScoreBoard();
   board.computeRoll(10);

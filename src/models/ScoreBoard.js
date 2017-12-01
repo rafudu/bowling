@@ -3,24 +3,34 @@ import { sum } from '../utils';
 import Frame from './Frame';
 
 class ScoreBoard {
-  constructor() {
+  constructor(rolls = []) {
     this.frames = [];
     this.currentFrameIndex = 0;
     this.currentFrame = new Frame();
     this.totalFrames = 10;
+    rolls.forEach((roll) => {
+      this.computeRoll(roll);
+    })
   }
 
   isLastFrame() {
     return this.currentFrameIndex === this.totalFrames-1;
   }
-
+  frame() {
+    if (!this.frames[this.currentFrameIndex]) {
+      this.frames[this.currentFrameIndex] = (new Frame({
+        isLastFrame: this.isLastFrame(),
+      }))
+    }
+    return this.frames[this.currentFrameIndex];
+  }
   computeRoll(pinsDropped) {
-    this.currentFrame.addRolling(pinsDropped);
+    this.frame().addRolling(pinsDropped);
     this.frames
-      .filter((frame) => frame.isPending())
+      .filter((frame, index) => frame.isPending() && index !== this.currentFrameIndex)
       .forEach((frame) => frame.addPoints(pinsDropped));
 
-    if(this.currentFrame.rollingIsFinished()) {
+    if(this.frame().rollingIsFinished()) {
       this.nextFrame();
     }
   }
@@ -31,10 +41,6 @@ class ScoreBoard {
   }
 
   nextFrame(){
-    this.frames.push(this.currentFrame);
-    this.currentFrame = new Frame({
-      isLastFrame: this.isLastFrame(),
-    });
     this.currentFrameIndex++;
   }
 
