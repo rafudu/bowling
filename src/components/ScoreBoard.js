@@ -7,6 +7,9 @@ const ScoreBoard = ({ rolls }) => {
   return (
     <div className="scoreboard">
       {scoreBoard.toArray().map(frame => <Frame {...frame}/>)}
+      <div className="scoreboard__score">
+        Score: {scoreBoard.score()}
+      </div>
     </div>
   )
 }
