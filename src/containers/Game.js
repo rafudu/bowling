@@ -6,7 +6,7 @@ import RandomRoller from '../components/RandomRoller';
 class Game extends Component {
   render() {
     return (
-      <div>
+      <div id="bowling-score">
         <ScoreBoard rolls={this.props.rolls} />
         <hr />
         <RandomRoller roll={this.props.roll} />

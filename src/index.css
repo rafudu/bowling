@@ -1,10 +1,20 @@
+body {
+  background: url('./images/bg.jpg');
+  font-family: Helvetica;
+}
+#bowling-score {
+  align-items: stretch;
+  position: absolute;
+  top: 50%;
+  text-align: center;
+  width: 100%;
+}
 .scoreboard {
   display: flex;
   width: 100%;
-  background: #CFD;
+  background: rgba(255,255,255,0.8);
   min-width: 960px;
   height: 5rem;
-  align-items: stretch;
 }
 .frame {
   flex: 1;
@@ -34,7 +44,24 @@
 .frame__first-roll {}
 .frame__second-roll {
   border: 1px solid #000;
+  border-top: none;
   margin-right: -1px;
   align-items: center;
 
+}
+.frame--additionalRolls .frame__second-roll {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+.frame--additionalRolls .frame__second-roll div {
+  width: 50%;
+  text-align: center;
+}
+.scoreboard__score {
+  min-width: 10%;
+}
+button {
+  padding: 0.5rem;
+  font-size: 2rem;
 }
