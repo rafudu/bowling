@@ -93,6 +93,15 @@ it("scores 300 for a perfect game", () => {
 
 })
 
+it("won't compute more than 10 frames", () => {
+  const board = new ScoreBoard();
+  for (var i = 0; i < 30; i++) {
+    board.computeRoll(10);
+  }
+
+  expect(board.score()).toBe(300);
+
+})
 it("can be initiated with rolls", () => {
   const board = new ScoreBoard([
     10,
@@ -165,7 +174,7 @@ it("scores 176 points for the example game", () => {
 
 it("exports and array with empty frames for the game if no frame was played", () => {
   const board = new ScoreBoard();
-  expect(board.toArray().length).toBe(board.totalFrames);
+  expect(board.toArray().length).toBe(board.maxFrames);
   board.toArray().forEach((frame) => {
     expect(frame).toHaveProperty('isLastFrame');
     expect(frame).toHaveProperty('strike');
@@ -184,7 +193,7 @@ it("exports and array with the value of the played frames", () => {
   const board = new ScoreBoard();
   board.computeRoll(10);
   const frame = board.toArray()[0];
-  expect(board.toArray().length).toBe(board.totalFrames);
+  expect(board.toArray().length).toBe(board.maxFrames);
   expect(frame).toHaveProperty('strike', true);
   expect(frame).toHaveProperty('isLastFrame', false);
   expect(frame).toHaveProperty('spare', false);
