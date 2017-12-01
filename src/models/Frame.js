@@ -5,7 +5,6 @@ class Frame {
     this.isLastFrame = isLastFrame || false;
     this.rolls = [];
     this.computedPoints = [];
-
   }
   addRolling(pinsDropped) {
     this.rolls.push(pinsDropped);
@@ -44,6 +43,7 @@ class Frame {
       spare: this.isSpare(),
       strike: this.isStrike(),
       rawPoints: this.computedPoints,
+      haveAdditionalRolls: this.haveAdditionalRolls(),
     }
   }
 }

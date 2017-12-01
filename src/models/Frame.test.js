@@ -132,5 +132,6 @@ it("exports the frame information to JSON", () => {
     points: frame.points(),
     rawPoints: frame.computedPoints,
     isLastFrame: frame.isLastFrame,
+    haveAdditionalRolls: frame.haveAdditionalRolls(),
   });
 })
