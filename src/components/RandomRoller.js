@@ -19,7 +19,7 @@ class RandomRoller extends React.Component {
     const miss = Math.floor(Math.random()*(9-roll1));
     return [roll1, miss].forEach(this.props.roll);
   }
-  roll(pins) {
+  roll() {
     const k = Math.random();
     if(k < 0.1) return this.rollStrike();
     if(k > 0.1 && k < 0.5) return this.rollSpare();
@@ -27,8 +27,10 @@ class RandomRoller extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="randomRoller">
         <button onClick={this.roll}>Roll it!</button>
+        <button onClick={() => this.rollStrike()}>Strike it!</button>
+        <button onClick={() => this.rollSpare()}>Spare it!</button>
       </div>
     )
   }

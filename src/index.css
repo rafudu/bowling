@@ -61,6 +61,9 @@ body {
 .scoreboard__score {
   min-width: 10%;
 }
+.randomRoller {
+  margin-top: 0.5rem;
+}
 button {
   padding: 0.5rem;
   font-size: 2rem;
