@@ -1,11 +1,12 @@
 import React from 'react';
 import Frame from './Frame';
+import ScoreBoardModel from '../models/ScoreBoard';
 
-
-const ScoreBoard = ({ frames }) => {
+const ScoreBoard = ({ rolls }) => {
+  const scoreBoard = new ScoreBoardModel(rolls);
   return (
     <div className="scoreboard">
-      {frames.map(frame => <Frame {...frame}/>)}
+      {scoreBoard.toArray().map(frame => <Frame {...frame}/>)}
     </div>
   )
 }

@@ -6,7 +6,7 @@ class Game extends Component {
   render() {
     return (
       <div>
-        <ScoreBoard frames={this.props.frames} />
+        <ScoreBoard rolls={this.props.rolls} />
         <hr />
         <button onClick={() => {this.props.roll(10)}}>Strike</button>
         <button onClick={() => {this.props.roll(5)}}>+5</button>
@@ -15,8 +15,8 @@ class Game extends Component {
   }
 }
 
-const mapStateToProps = ({frames}) => ({
-  frames,
+const mapStateToProps = ({rolls}) => ({
+  rolls,
 });
 const mapDispatchToProps = (dispatch) => ({
   roll: (pins) => dispatch(roll(pins)),

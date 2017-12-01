@@ -2,22 +2,15 @@ import {
   ROLL,
 } from '../actions/types';
 
-import ScoreBoard from '../models/ScoreBoard';
-const scoreBoard = new ScoreBoard();
-const initialState = {
-  frames: [],
-}
-
-const frames = (state, action) => {
+const rolls = (state, action) => {
   switch (action.type) {
     case ROLL:
-      scoreBoard.computeRoll(action.pinsDropped)
-      return scoreBoard.toArray();
+      return [...state, action.pinsDropped];
     default:
       return [];
   }
 }
-const reducer = (state = initialState, action) => ({
-  frames: frames(state, action),
+const reducer = (state = {}, action) => ({
+  rolls: rolls(state.rolls, action),
 });
 export default reducer;
