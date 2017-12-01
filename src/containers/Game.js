@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ScoreBoard from '../components/ScoreBoard';
 import { roll } from '../actions';
+import ScoreBoard from '../components/ScoreBoard';
+import RandomRoller from '../components/RandomRoller';
 class Game extends Component {
   render() {
     return (
       <div>
         <ScoreBoard rolls={this.props.rolls} />
         <hr />
-        <button onClick={() => {this.props.roll(10)}}>Strike</button>
-        <button onClick={() => {this.props.roll(5)}}>+5</button>
+        <RandomRoller roll={this.props.roll} />
       </div>
     )
   }
